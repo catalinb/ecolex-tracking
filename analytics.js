@@ -17,6 +17,9 @@ window.addEventListener('load', function () {
 function setup_handlers() {
   $(".short_button").click(advanced_list_button_click);
 
+  // search results indexHits restrict links
+  $(".indexHits a").click(index_hit_filter_click);
+
   $("#go_button").click(simple_search_submit);
   $("input.long_button:nth-child(1)").click(advanced_search_submit);
   console.log("handlers set");
@@ -38,4 +41,9 @@ function advanced_list_button_click() {
 
 function list_button_clicked() {
   ga('send', 'event', 'AdvancedSearchOptions', 'List', 'TitleList');
+}
+
+function index_hit_filter_click() {
+  text = this.innerHTML.split(' ')[0];
+  ga('send', 'event', 'AdvancedSearchOptions', 'List', text);
 }
