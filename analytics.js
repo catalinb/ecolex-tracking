@@ -1,7 +1,7 @@
 // ecolex ga tracking
 window.addEventListener('load', function () {
   // your code here
-  console.log('loading: google-analytics-eaudeweb');
+  console.log('loading: google-analytics-eaudeweb.');
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -15,9 +15,7 @@ window.addEventListener('load', function () {
 }, false);
 
 function setup_handlers() {
-  // probably not the best selector
-  $(".input-fields > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(2) > input:nth-child(5)")
-   .click(words_from_title_list);
+  $(".short_button").click(advanced_list_button_click);
 
   $("#go_button").click(simple_search_submit);
   $("input.long_button:nth-child(1)").click(advanced_search_submit);
@@ -25,17 +23,19 @@ function setup_handlers() {
 }
 
 function simple_search_submit() {
-  console.log("Simple Search");
   ga('send', 'event', 'SimpleSearch', 'Submit', 'SimpleSearch');
 }
 
 function advanced_search_submit() {
   title = $("#titleOfText")[0];
 
-  console.log("title value: " + title.value);
   ga('send', 'event', 'AdvancedSearch', 'Submit', 'AdvancedSearch');
 }
 
-function words_from_title_list() {
+function advanced_list_button_click() {
+  ga('send', 'event', 'AdvancedSearchOptions', 'List', this.parentElement.children[1].name);
+}
+
+function list_button_clicked() {
   ga('send', 'event', 'AdvancedSearchOptions', 'List', 'TitleList');
 }
