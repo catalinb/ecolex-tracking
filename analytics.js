@@ -20,6 +20,10 @@ function setup_handlers() {
   // search results indexHits restrict links
   $(".indexHits a").click(index_hit_filter_click);
 
+  // search results
+  $(".result-date a").click(outbound_link_click);
+  $(".input-fields td a").click(record_detail_outbound_link_click);
+
   $("#go_button").click(simple_search_submit);
   $("input.long_button:nth-child(1)").click(advanced_search_submit);
   console.log("handlers set");
@@ -30,7 +34,7 @@ function simple_search_submit() {
 }
 
 function advanced_search_submit() {
-  title = $("#titleOfText")[0];
+  var title = $("#titleOfText")[0];
 
   ga('send', 'event', 'AdvancedSearch', 'Submit', 'AdvancedSearch');
 }
@@ -46,4 +50,27 @@ function list_button_clicked() {
 function index_hit_filter_click() {
   text = this.innerHTML.split(' ')[0];
   ga('send', 'event', 'AdvancedSearchOptions', 'List', text);
+}
+
+function outbound_link_click() {
+  var url = this.href;
+  var eventAction = "OutboundResultLink";
+
+  if (this.hostname === "faolex.fao.org") {
+    eventAction = "FaolexResultLink";
+  } else if (this.hostname === "www.ecolex.org") {
+    eventAction = "InternalResultLink";
+  }
+
+  ga('send', 'event', 'OutboundLink', eventAction, url);
+}
+
+function record_detail_outbound_link_click() {
+  var description = this.parentElement.previousElementSibling.innerHTML;
+
+  if (description.match(/Link/g)) {
+    outbound_link_click.bind(this)();
+  }
+
+  ga('send', 'event', "OutboundLink", "OutboundClick", this.href);
 }
