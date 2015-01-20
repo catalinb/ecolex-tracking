@@ -45,10 +45,6 @@ function advanced_list_button_click() {
   ga('send', 'event', 'AdvancedSearchOptions', 'List', this.parentElement.children[1].name);
 }
 
-function list_button_clicked() {
-  ga('send', 'event', 'AdvancedSearchOptions', 'List', 'TitleList');
-}
-
 function index_hit_filter_click() {
   text = this.innerHTML.split(' ')[0];
   ga('send', 'event', 'AdvancedSearchOptions', 'List', text);
@@ -72,9 +68,9 @@ function record_detail_outbound_link_click() {
 
   if (description.match(/Link/g)) {
     outbound_link_click.bind(this)();
+  } else {
+    ga('send', 'event', "OutboundLink", "OutboundClick", this.href);
   }
-
-  ga('send', 'event', "OutboundLink", "OutboundClick", this.href);
 }
 
 function menu_navigation() {
