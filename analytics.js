@@ -17,6 +17,8 @@ window.addEventListener('load', function () {
 function setup_handlers() {
   $(".short_button").click(advanced_list_button_click);
 
+  $("#menu a").click(menu_navigation);
+
   // search results indexHits restrict links
   $(".indexHits a").click(index_hit_filter_click);
 
@@ -73,4 +75,9 @@ function record_detail_outbound_link_click() {
   }
 
   ga('send', 'event', "OutboundLink", "OutboundClick", this.href);
+}
+
+function menu_navigation() {
+  var target = this.innerHTML;
+  ga('send', 'event', 'Navigation', target, this.href);
 }
