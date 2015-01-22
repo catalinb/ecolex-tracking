@@ -26,8 +26,8 @@ function setup_handlers() {
   $(".result-date a").click(outbound_link_click);
   $(".input-fields td a").click(record_detail_outbound_link_click);
 
-  $("#go_button").click(simple_search_submit);
-  $("input.long_button:nth-child(1)").click(advanced_search_submit);
+  $("#searchForm").click(simple_search_submit);
+  $("#advancedSearchForm").click(advanced_search_submit);
   console.log("handlers set");
 }
 
