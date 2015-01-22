@@ -75,5 +75,5 @@ function record_detail_outbound_link_click() {
 
 function menu_navigation() {
   var target = this.innerHTML;
-  ga('send', 'event', 'Navigation', target, this.href);
+  ga('send', 'event', 'Navigation', target);
 }
