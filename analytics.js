@@ -37,6 +37,11 @@ function simple_search_submit() {
 
 function advanced_search_submit() {
   var title = $("#titleOfText")[0];
+  $("input[type=text]").each(function () {
+    if (this.value !== "") {
+      ga('send', 'event', 'AdvancedSearchOptions', this.name, this.value);
+    }
+  });
 
   ga('send', 'event', 'AdvancedSearch', 'Submit', 'AdvancedSearch');
 }
