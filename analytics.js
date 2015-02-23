@@ -61,7 +61,21 @@ function outbound_link_click() {
 
   if (this.hostname === "faolex.fao.org") {
     eventAction = "FaolexResultLink";
+    // Faolex visitor
+    ga('set', 'dimension1', true);
+    // Faolex visitor session
+    ga('set', 'dimension3', true);
+    // Faolex hit
+    ga('set', 'dimension5', true);
+    ga('set', 'metric1', 1);
   } else if (this.hostname === "www.ecolex.org") {
+    // Ecolex visitor (internal)
+    ga('set', 'dimension2', true);
+    // Ecolex visitor session
+    ga('set', 'dimension4', true);
+    // Ecolex document hit
+    ga('set', 'dimension6', true);
+    ga('set', 'metric2', 1);
     eventAction = "InternalResultLink";
   }
 
